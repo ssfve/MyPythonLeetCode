@@ -1,0 +1,15 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        hash_table = dict()
+        for index in range(len(nums)):
+            if hash_table.has_key(nums[index]):
+                return [hash_table[nums[index]],index]
+            hash_table[target-nums[index]]=index
+            
+                
+        
