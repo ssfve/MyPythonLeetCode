@@ -1,0 +1,20 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        #use dict to record legal positions
+        ans = 0
+        left = 0
+        last = dict()
+        for index in range(len(s)):
+            # check if in dict
+            if s[index] in last and last[s[index]] >= left:
+            #if s[index] in last:
+                left = last[s[index]] + 1
+            last[s[index]] = index
+            # check which is bigger
+            ans = max(ans, index - left + 1)
+        
+        return ans
