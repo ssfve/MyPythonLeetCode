@@ -1,0 +1,47 @@
+class Solution(object):
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """
+        INT_MIN = -2147483648
+        INT_MAX = 2147483647
+        
+        str = str.lstrip(' ')
+        str_len = len(str)
+        if len(str) == 0:
+            return 0
+        
+        loop_len = 0
+        neg = 1
+        if str[0] == '-':
+            neg = -1
+            loop_len = str_len - 1
+            modifier = 1
+            
+        if str[0] == '+':
+            loop_len = str_len - 1
+            modifier = 1
+        
+          
+        if ord(str[0])-ord('0') >= 0 and ord(str[0])-ord('0') <= 9:
+            loop_len = str_len
+            modifier = 0
+        
+        # '0' is 48 in ASCII 
+        ret_int = 0 
+        for index in range(loop_len):
+            digit = ord(str[index + modifier]) - ord('0')
+            if digit >= 0 and digit <= 9:
+                ret_int = ret_int * 10 + digit
+            else:
+                break
+        
+        final_int =  neg * ret_int 
+        if final_int >= (1 << 31) - 1:
+            return INT_MAX
+        elif final_int <= -(1 << 31):
+            return INT_MIN
+        else:
+            return final_int
+        
