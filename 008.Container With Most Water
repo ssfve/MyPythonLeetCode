@@ -4,6 +4,7 @@ class Solution(object):
         :type height: List[int]
         :rtype: int
         """
+        # Two Pointer Approach
         '''
         题意:任取两个a[i]、a[j] 使得min(a[i], a[j]) * abs(i - j)最大化
         用两个指针从两侧向中间扫描，每次移动数值较小的指针，用反证法可以证明
