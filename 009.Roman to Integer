@@ -1,0 +1,54 @@
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        # part of str can be accessed using index
+        # like s[index:index+2]
+        
+        temp = 0
+        # construct dictionary
+        roman_dict = dict()
+        roman_dict['M'] = 1000
+        roman_dict['CM'] = 900
+        roman_dict['D'] = 500
+        roman_dict['CD'] = 400
+        roman_dict['C'] = 100
+        roman_dict['XC'] = 90
+        roman_dict['L'] = 50
+        roman_dict['XL'] = 40
+        roman_dict['X'] = 10
+        roman_dict['IX'] = 9
+        roman_dict['V'] = 5
+        roman_dict['IV'] = 4
+        roman_dict['I'] = 1
+        
+        index = 0
+        temp = 0
+        """
+        if ROMAN[s[index]] < ROMAN[s[index + 1]]:
+                sum -= ROMAN[s[index]]
+            else:
+                sum += ROMAN[s[index]]
+                
+        if the digit is small than the later one use negative
+        """
+        # start from the end ！！！
+        while index <= len(s)-2:
+                
+            # encode and decode
+            # encode turn utf-8 to normal str   .encode('utf-8')
+            # decode turn str to utf-8   .decode('utf-8')
+            if roman_dict.has_key(s[index:index+2]):
+                temp += roman_dict[s[index:index+2]]
+                index += 2
+            elif roman_dict.has_key(s[index]):
+                temp += roman_dict[s[index]]
+                index += 1
+        
+        if index <= len(s)-1:
+            temp += roman_dict[s[index]]
+        return temp
+            
+            
