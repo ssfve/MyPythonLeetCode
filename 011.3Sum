@@ -1,0 +1,49 @@
+"""
+问题：
+
+某公司有几万名员工，请完成一个时间复杂度为O(n)的算法对该公司员工的年龄作排序，可使用O(1)的辅助空间。
+
+分析：
+
+《算法导论》中提到，所有基于比较排序的算法，时间复杂度最低为O(nlogn)，所以不能采用普通的比较排序（堆排，快排等），
+采用计数排序或者基数排序，桶排等。我们采用计数排序，统计一个区间内所有数字出现的次数（这是由问题的特殊性决定的），然后再输出到数组中。
+"""
+
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        
+        # the whole algorithm depends on sorting
+        # we have a great many sorting algorithms
+        # O(N**3) becomes O(N) + O(N**2)
+        nums.sort()
+        
+        res = []
+        length = len(nums)
+        
+        # DEPENDS ON 2SUM O(N)
+        # use two pointers so the complication is O(N**2)
+        for i in range(0, length - 2):
+            if i and nums[i] == nums[i - 1]:
+                continue
+            target = nums[i] * -1
+            left, right = i + 1, length - 1
+            while left < right:
+                if nums[left] + nums[right] == target:
+                    res.append([nums[i], nums[left], nums[right]])
+                    right -= 1
+                    left += 1
+                    
+                    # remove duplicate entries
+                    while left < right and nums[left] == nums[left - 1]:
+                        left += 1
+                    while left < right and nums[right] == nums[right + 1]:
+                        right -= 1
+                elif nums[left] + nums[right] > target:
+                    right -= 1
+                else:
+                    left += 1
+        return res
