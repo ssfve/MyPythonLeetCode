@@ -1,0 +1,25 @@
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        min_len = 0
+        
+        if len(strs) <= 1:
+            return strs[0] if len(strs) == 1 else ""
+        
+        
+        for element in strs:
+            min_len = min([len(s) for s in strs])
+            
+        if min_len == 0:
+            return ""
+        for index in range(min_len):
+            for i in range(len(strs)):
+                if strs[i][index] != strs[i-1][index]:
+                    # a[:0] will return [] no element
+                    return strs[0][:index]
+        # this means there is a min_len string which is the longest common prefix
+        return strs[0][:min_len]
+                    
