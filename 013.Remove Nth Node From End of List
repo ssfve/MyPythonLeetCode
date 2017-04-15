@@ -1,0 +1,59 @@
+# Definition for singly-linked list.
+class ListNode(object):
+     def __init__(self, x):
+         self.val = x
+         self.next = None
+
+class Solution(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        # this len approach scans twice
+        # use two point count the nth element from the start and then start the second pointer
+        """
+        len = 0
+        while self.next != None:
+            len += 1
+            self.next = self.next
+        
+        index = 0
+        while index < len:
+            if index == len - n:
+                head.next = self.next
+            if indec == 0:
+                head.next = head.next
+                
+        
+        return head
+        """
+        '''
+    题意：删除链表中倒数第n个结点，尽量只扫描一遍。
+    使用两个指针扫描，当第一个指针扫描到第N个结点后，
+    第二个指针从表头与第一个指针同时向后移动，
+    当第一个指针指向空节点时，另一个指针就指向倒数第n个结点了       
+    '''
+        # head.next points to a struct so it is given to a variable head no matter what it gives to
+        # struct at tmp.next location is deleted
+        # the original tmp.next should points to tmp.next.next location
+        # tmp = tmp.next
+        
+        # the head is first given to another red
+        res = ListNode(0)
+        res.next = head
+        
+        # the scond pointer here
+        tmp = res
+        
+        for i in range(0, n):
+            head = head.next    # count first n positions
+        
+        while head != None:
+            head = head.next    # first pointer
+            tmp = tmp.next      # second pointer
+        tmp.next = tmp.next.next
+        
+        # because head maybe deleted so return res.next here in case head is deleted
+        return res.next
