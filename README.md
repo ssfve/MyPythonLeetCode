@@ -5,10 +5,10 @@ Question|Trick
 -----|------
 001.Two Sum |	dict   Hashtable
 002.Add Two Numbers 	|linked list manipulation carry
-003.Longest Substring Without Repeating Characters 	|
+003.Longest Substring Without Repeating Characters 	|  auxiliary dict
 004.Longest Palindromic Substring.md 	  | mancher algorithm
-005.Reverse Integer |	+ -
-006.String to Integer(atoi) 	|
+005.Reverse Integer |	+ -   boundary
+006.String to Integer(atoi) 	| boundary
 007.Regular Expression Matching.md |	  recursive and dynamic programming
 008.Container With Most Water |	two pointer head tail approach
 009.Roman to Integer |	   dict
