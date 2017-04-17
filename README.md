@@ -16,3 +16,4 @@ Question|Trick
 011.3Sum 	   | two pointer for sorted list plus iteration
 012.Valid Parentheses  |   stack
 013.Remove Nth Node From End of List 	 |    two pointer shift
+014.Letter Combination of a Phone Number|   dict recursive
