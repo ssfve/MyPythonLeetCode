@@ -1,0 +1,98 @@
+class Solution(object):
+    def threeSumClosest(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        """
+        # based on 2 sum for sorted array
+        # 3 sum closest based on that
+        nums.sort()
+        nums_min = nums[0] + nums[1] + nums[2]
+        nums_max = nums[-1] + nums[-2] + nums[-3]
+        
+        temp = target
+        if target <= nums_min:
+            temp = nums_min
+        elif target >= nums_max:
+            temp = nums_max
+        
+        if temp - nums_min <= temp - target:
+            start = nums_min
+            end = 2 * temp - nums_min + 1
+        else:
+            start = 2 * temp - nums_max
+            end = nums_max + 1
+        
+        #return [start,end]       
+        res = []
+        length = len(nums)
+        
+        # DEPENDS ON 2SUM O(N)
+        # use two pointers so the complication is O(N**2)
+        for i in range(0, length - 2):
+            if i and nums[i] == nums[i - 1]:
+                continue
+            
+            for number in range(start,end):
+                sum = number - nums[i]
+                left, right = i + 1, length - 1
+                while left < right:
+                    if nums[left] + nums[right] == sum:
+                        res.append([nums[i], nums[left], nums[right]])
+                        right -= 1
+                        left += 1
+                            
+                        # remove duplicate entries
+                        while left < right and nums[left] == nums[left - 1]:
+                            left += 1
+                        while left < right and nums[right] == nums[right + 1]:
+                            right -= 1
+                    elif nums[left] + nums[right] > sum:
+                        right -= 1
+                    else:
+                        left += 1
+                 
+        #return len(res) 
+        #return res
+        for i in range(0,len(res)):
+            if i == 0:
+                result = res[0][0] + res[0][1] + res[0][2]
+                min_result = target - result
+                ret_result = result
+                #return min_result
+            result = res[i][0] + res[i][1] + res[i][2]
+            
+            if target >= result:
+                min_distance = target - result
+            else:
+                min_distance = result - target
+            
+            
+            if min(min_result, min_distance) == min_distance:
+                ret_result = result
+                min_result = min_distance
+            
+        return ret_result
+        """
+        
+        # sorting is a must then use three pointer i l r
+        # because it is sorted if the previous i is not satisfied the latter will do
+        nums.sort()
+        ans = None
+        for i in range(len(nums)):
+            l, r = i + 1, len(nums) - 1
+            while (l < r):                    
+                sum = nums[l] + nums[r] + nums[i]
+                # use abs
+                # when looping check abs(sum- target) on the run
+                # change l and r if answer is not found is not the end
+                if ans is None or abs(sum- target) < abs(ans - target):
+                    ans = sum
+                if sum <= target:
+                    l = l + 1
+                else:
+                    r = r - 1
+        return ans
+        
