@@ -1,0 +1,72 @@
+class Solution(object):
+    
+        
+    def intToRoman(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        """
+        roman_dict = dict()
+        roman_dict[1000] = 'M'
+        roman_dict[900] = 'CM'
+        roman_dict[500] = 'D'
+        roman_dict[400] = 'CD'
+        roman_dict[100] = 'C'
+        roman_dict[90] = 'XC'
+        roman_dict[50] = 'L'
+        roman_dict[40] = 'XL'
+        roman_dict[10] = 'X'
+        roman_dict[9] = 'IX'
+        roman_dict[5] = 'V'
+        roman_dict[4] = 'IV'
+        roman_dict[1] = 'I'
+        
+        
+        roman_list = [1000,900,500,400,100,90,50,40,10,9,5,4,1]
+        
+        def roman_iter(num):
+            for index in range(len(roman_list)):
+                if num >= roman_list[index]:
+                    num = num - roman_list[index]
+                    if num == 0:
+                        return str(roman_dict[roman_list[index]])
+                    else:
+                        return str(roman_dict[roman_list[index]]) + roman_iter(num)
+                    
+        
+        
+        return roman_iter(num)
+       """
+       def parse(self, digit, index):
+        NUMS = {
+            1: 'I',
+            2: 'II',
+            3: 'III',
+            4: 'IV',
+            5: 'V',
+            6: 'VI',
+            7: 'VII',
+            8: 'VIII',
+            9: 'IX',
+        }
+        ROMAN = {
+            'I': ['I', 'X', 'C', 'M'],
+            'V': ['V', 'L', 'D', '?'],
+            'X': ['X', 'C', 'M', '?']
+        }
+        
+        s = NUMS[digit]
+        return s.replace('X', ROMAN['X'][index]).replace('I', ROMAN['I'][index]).replace('V', ROMAN['V'][index])
+        
+    def intToRoman(self, num):
+        s = ''
+        index = 0
+        while num != 0:
+            digit = num % 10
+            if digit != 0:
+                s = self.parse(digit, index) + s
+            num = num / 10
+            index += 1
+        return s
+        
