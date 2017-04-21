@@ -20,3 +20,4 @@ Question|Trick
 015.3Sum Closest| sorted two pointer abs check on the run
 016.Integer to Roman|   dict recursive
 017.4Sum   |   sort two pointer enum
+018.Merge Two Sorted Lists|   dummy   linked list
