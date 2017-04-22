@@ -22,3 +22,4 @@ Question|Trick
 017.4Sum   |   sort two pointer enum
 018.Merge Two Sorted Lists|   dummy   linked list
 019.Generate Parentheses|   decision tree recursive  set
+020.Valid Sudoku|  set
