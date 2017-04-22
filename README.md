@@ -21,3 +21,4 @@ Question|Trick
 016.Integer to Roman|   dict recursive
 017.4Sum   |   sort two pointer enum
 018.Merge Two Sorted Lists|   dummy   linked list
+019.Generate Parentheses|   decision tree recursive
