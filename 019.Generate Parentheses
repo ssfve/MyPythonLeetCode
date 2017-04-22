@@ -15,7 +15,7 @@ class Solution(object):
     #(0,1)  ((())       #(0,1)  (()()    #(0,1)  (())(   #(1,0)  (()))  return  #(0,1)  ()(()   #(0,1)   ()()(  #(1,0) ()())    return
     #(0,0)  ((()))      #(0,0)  (()())   #(0,0)  (())()                         #(0,0)  ()(())  #(0,0)   ()()()
     # total 5 solutions
-    
+    """
     def helpler(self, l, r, item, res):
         if r < l:
             return
@@ -39,3 +39,23 @@ class Solution(object):
         # n left parentheses n right parentheses
         self.helpler(n, n, '', res)
         return res
+    """
+    # count the number of left parentheses and then add to set to emliminate duplicates
+    def generateParenthesis(self, n):
+        t =set([])
+        if n==0:
+            t.add('')
+        else:
+            # pre is a set
+            pre = self.generateParenthesis(n-1)
+            for a in pre:
+                for i in range(len(a)):
+                    if a[i] == '(':
+                        temp_1 = a[0:i+1]
+                        temp_2 = a[i+1:len(a)]
+                        new_str = temp_1 + '()' + temp_2
+                        t.add(new_str)
+                t.add('()'+a)
+                    
+        return list(t)
+        
