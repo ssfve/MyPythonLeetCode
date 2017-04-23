@@ -1,0 +1,49 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+ 
+//List是接口，ArrayList、Vector、LinkedList实现这个接口。
+//其中ArrayList底层是以数组实现的。
+//Vector也是数组实现，但是他是线程安全的，不会有并发产生的问题，但是效率要低于ArrayList。
+//LinkedList是!双向!链表实现，适合于经常进行删除操作，但是查询效率没ArrayList、Vector快。。 
+
+public class Solution {
+    private Comparator<ListNode> ListNodeComparator = new Comparator<ListNode>() {
+        public int compare(ListNode left, ListNode right) {
+            return left.val - right.val;
+        }
+    };
+    
+    // array
+    // List<ListNode> is interface
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
+        
+        Queue<ListNode> heap = new PriorityQueue<ListNode>(lists.length, ListNodeComparator);
+        for (int i = 0; i < lists.length; i++) {
+            if (lists[i] != null) {
+                heap.add(lists[i]);
+            }
+        }
+        
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        while (!heap.isEmpty()) {
+            // poll is unique to priority queue
+            ListNode head = heap.poll();
+            tail.next = head;
+            tail = head;
+            if (head.next != null) {
+                heap.add(head.next);
+            }
+        }
+        return dummy.next;
+    }
+}
