@@ -47,3 +47,175 @@ public class Solution {
         return dummy.next;
     }
 }
+
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    #def mergeKLists(self, lists):
+    """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+    """
+    # divide and conquer
+    # based on merge two lists
+    # divide into two and then perform on each divide
+    # merge two by two
+    # Priority Queue 此队列的头 是按指定排序方式确定的最小 元素。如果多个元素都是最小值，则头是其中一个元素——选择方法是任意的。
+    # 队列获取操作 poll、remove、peek 和 element 访问处于队列头的元素。
+    # 优先级队列是无界的，但是有一个内部容量，控制着用于存储队列元素的数组大小。
+    # 它通常至少等于队列的大小。随着不断向优先级队列添加元素，其容量会自动增加。无需指定容量增加策略的细节。
+    # as python use priority queue
+    # vector是STL中最常见的容器，它是一种顺序容器，支持随机访问。vector是一块连续分配的内存，
+    # 从数据安排的角度来讲，和数组极其相似，不同地方就是：
+    # 数组是静态分配空间，一旦分配了空间的大小，就不可再改变了；
+    # 而vector是动态分配空间，随着元素的不断插入，它会按照自身的一套机制不断扩充自身的容量。
+    # vector的扩充机制：按照容器现在容量的一倍进行增长。
+    # vector容器分配的是一块连续的内存空间，每次容器的增长，并不是在原有连续的内存空间后再进行简单的叠加，
+    # 而是重新申请一块更大的新内存，并把现有容器中的元素逐个复制过去，然后销毁旧的内存。
+    # 这时原有指向旧内存空间的迭代器已经失效，所以当操作容器时，迭代器要及时更新。
+    
+    def mergeKLists(self, lists):
+        # write your code here
+        
+        # first element in each listnode
+        self.heap = [[i, lists[i].val] for i in range(len(lists)) if lists[i] != None]
+        self.hsize = len(self.heap)
+        
+        #self.heap=[[6,21],[3,8],[2,16],[1,10],[4,11],[5,17]]
+        #self.hsize = 6
+        #self.adjustdown(0)
+        #return self.heap
+        # will return [[3,8],[1,10],[2,16],[6,21],[4,11],[5,17]
+        
+        
+        #self.heap = [[0,7],[1,10],[2,16],[3,8],[4,11],[5,17],[6,21]]
+        #self.hsize = 7
+        # reverse order range
+        for i in range(self.hsize - 1, -1, -1):
+            self.adjustdown(i)
+            
+        #return self.heap
+        # will return [[0,7],[3,8],[2,16],[1,10],[4,11],[5,17],[6,21]]
+        #   0
+        #  1    2
+        # 3  4   5   6
+        
+        #    6
+        #  1    2
+        # 3  4    5
+        nHead = ListNode(0)
+        head = nHead
+        while self.hsize > 0:
+            ind, val = self.heap[0][0], self.heap[0][1]
+            
+            # the sorted linked list
+            head.next = lists[ind]
+            head = head.next
+            
+            # the next elemnt in linked list
+            lists[ind] = lists[ind].next
+            
+            if lists[ind] is None:
+                # a linked list is depleted
+                self.heap[0] = self.heap[self.hsize-1]
+                self.hsize = self.hsize - 1
+                # will return [[6,21],[3,8],[2,16],[1,10],[4,11],[5,17]]
+                # adjust from 0 heapsize is 6
+                # 1  ,  2
+                # 1<6    8<21  change np to 1 and pv to 8
+                # 2<6    16<8  not satisfy
+                # np and p swap   8 become the root
+                # changed to [[3,8],[6,21],[2,16],[1,10],[4,11],[5,17]
+                # p become 1 because break is not reached
+                # [6,21] progress
+                # changed to [[3,8],[1,10],[2,16],[6,21],[4,11],[5,17]
+                
+            else:
+                self.heap[0] = [ind, lists[ind].val]
+                
+            self.adjustdown(0)
+            
+        return nHead.next
+
+    def adjustdown(self, p):
+        # this is python lambda function
+        # looks like binary tree
+        lc = lambda x: (x + 1) * 2 - 1
+        rc = lambda x: (x + 1) * 2
+        
+        # as a binary tree the root is bigger than the left node and right node
+        # every node other than leaf is bigger than its leaf 
+        while True:
+            # the value at index p
+            np, pv = p, self.heap[p][1]
+            # the upper half
+            if lc(p) < self.hsize and self.heap[lc(p)][1] < pv:
+                np, pv = lc(p), self.heap[lc(p)][1]
+                
+            if rc(p) < self.hsize and self.heap[rc(p)][1] < pv:
+                np = rc(p)
+            
+            
+            # manage binary trees
+            #   [0,7]
+            #   [1,10]
+            #   [2,16]
+            #   [3,8]
+            #   [4,11]
+            #   [5,17]
+            #   [6,21]
+            
+            # heapsize is 7
+            # adjust down from 7-1=6
+            # (6+1)*2-1 = 13
+            # (6+1)*2   = 14
+            # do not satisfy
+            # and np == p  break
+            # adjust down from 5
+            # 11 and 12
+            # do not satisfy break
+            # ... adjust down from 3
+            # 7 and 8   break
+            # adjustdown from 2
+            # 5 and 6
+            # 5< 7 and self.heap[5][1]=17 > 16 not change
+            # 6<7  and self.heap[6][1]=21 > 16 not change
+            # break
+            # adjustdown from 1
+            # 3 and 4
+            # 3<7 and self.heap[3][1]=8   < 10  change np = 3  and pv = 8
+            # np(3) != p(1)  change self.heap[3] to self.heap[1]
+            # continue 8<10  8<11 do nothing
+            #   [0,7]
+            #   [3,8]
+            #   [2,16]
+            #   [1,10]
+            #   [4,11]
+            #   [5,17]
+            #   [6,21]
+            # adjustdown from 0
+            # 1 and 2
+            #  1<7   and self.heap[1][1] = 8
+            #  2<7  and self.heap[2][1]=16
+            # not change
+            
+            # if the above condition is not satisfied p didn't change
+            # change the left tight tree
+            if np == p:
+                break
+            else:
+                # python swap!!!
+                self.heap[np], self.heap[p] = self.heap[p], self.heap[np]
+                p = np
+        
+        """
+        a python implementation of priority queue
+        check here for analysis
+        http://blog.csdn.net/hudashi/article/details/6942789
+        SiftUp SiftDown
+        """
