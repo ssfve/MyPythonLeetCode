@@ -23,3 +23,4 @@ Question|Trick
 018.Merge Two Sorted Lists|   dummy   linked list
 019.Generate Parentheses|   decision tree recursive  set
 020.Valid Sudoku|  set
+021.Merge k Sorted Lists| divide and conquer two by two Priority Queue
