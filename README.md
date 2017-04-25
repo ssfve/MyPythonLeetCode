@@ -25,3 +25,4 @@ Question|Trick
 020.Valid Sudoku|  set
 021.Merge k Sorted Lists| divide and conquer two by two Priority Queue Binary Tree
 022.Remove Duplicates from Sorted Array 	| Two Pointers fast runner slow runner
+Implement strStr()|   loop
