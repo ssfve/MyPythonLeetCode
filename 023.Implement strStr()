@@ -1,0 +1,19 @@
+class Solution(object):
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+        
+        
+        needle_len = len(needle)
+        haystack_len = len(haystack)
+        
+        if needle_len == 0:
+            return 0
+        
+        for index in range(haystack_len-needle_len+1):
+            if haystack[index:index+needle_len] == needle:
+                return index
+        return -1
