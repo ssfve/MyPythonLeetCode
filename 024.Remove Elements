@@ -1,0 +1,45 @@
+class Solution(object):
+    def removeElement(self, nums, val):
+        """
+        :type nums: List[int]
+        :type val: int
+        :rtype: int
+        """
+        
+        # anyway it is like two pointer approach
+        
+        """
+        copy needed value if there are many
+        
+        public int removeElement(int[] nums, int val) {
+            int i = 0;
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] != val) {
+                    nums[i] = nums[j];
+                    i++;
+                }
+            }
+            return i;
+        }
+        """
+        
+        """
+        remove unneed use needed value to fill
+        if there are rare unneeded values not so many
+        this will be faster
+        """
+        
+        p=0
+        if nums == None:
+            return []
+            
+        len_nums = len(nums)
+        
+        while p < len_nums:
+            if nums[p] == val:
+                nums[p] = nums[len_nums-1]
+                len_nums = len_nums -1
+            else:
+                p = p+1
+                
+        return len_nums
