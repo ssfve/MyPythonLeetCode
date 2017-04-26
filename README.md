@@ -26,3 +26,4 @@ Question|Trick
 021.Merge k Sorted Lists| divide and conquer two by two Priority Queue Binary Tree
 022.Remove Duplicates from Sorted Array 	| Two Pointers fast runner slow runner
 023.Implement strStr()|   loop
+024.Remove Elements|  two pointers
