@@ -28,4 +28,4 @@ Question|Trick
 023.Implement strStr()|   loop
 024.Remove Elements|  two pointers
 025.Divide Two Integers| BINARY divide
-026.Search for a Range| two pointer
+026.Search for a Range| two pointers divide by two
