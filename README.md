@@ -29,3 +29,4 @@ Question|Trick
 024.Remove Elements|  two pointers
 025.Divide Two Integers| BINARY divide
 026.Search for a Range| two pointers divide by two
+027.Swap Nodes in Pairs| linked list
