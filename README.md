@@ -6,7 +6,7 @@ Question|Trick
 001.Two Sum |	dict   Hashtable  sorted two pointer
 002.Add Two Numbers 	|linked list manipulation carry
 003.Longest Substring Without Repeating Characters 	|  auxiliary dict
-004.Longest Palindromic Substring.md 	  | mancher algorithm
+004.Longest Palindromic Substring.md 	  | MANCHER algo support array
 005.Reverse Integer |	+ -   boundary
 006.String to Integer(atoi) 	| boundary
 007.Regular Expression Matching.md |	  recursive and dynamic programming
@@ -31,3 +31,4 @@ Question|Trick
 026.Search for a Range| two pointers divide by two
 027.Swap Nodes in Pairs| linked list
 028.Next Permutation| python for else floor division reservation algo
+029.Repeated Substring Pattern| KMP algo support array
