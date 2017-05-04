@@ -32,3 +32,4 @@ Question|Trick
 027.Swap Nodes in Pairs| linked list
 028.Next Permutation| python for else floor division reservation algo
 029.Repeated Substring Pattern| KMP algo support array
+030.Search Insert Position| Sorted Divide by two
