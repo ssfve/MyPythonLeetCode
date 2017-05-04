@@ -16,6 +16,7 @@ class Solution(object):
         lenSub = l - 1 - next[l - 1]
         return lenSub != l and l % lenSub ==0
         
+        #http://blog.csdn.net/yutianzuijin/article/details/11954939/
         """
         1.字符串s的下标从0到n-1，n为字符串长度，记s(i)表示s的第i位字符，s(i,j)表示从s的第i位到第j位的子字符串，若i>j，则s(i,j)=””(空串）。
         2.next数组的定义为：next(i)=p，表示p为小于i且满足s(0 , p) = s(i-p , i)的最大的p，
