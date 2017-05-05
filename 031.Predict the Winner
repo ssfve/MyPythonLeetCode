@@ -1,0 +1,67 @@
+public class Solution {
+    public boolean PredictTheWinner(int[] nums) {
+        if (nums == null || nums.length == 0) {  
+            return false;  
+        }  
+        
+        // step 1
+        // initialize dp array
+        int[][] dp = new int[nums.length][nums.length];  
+        
+        //int sum = 0;  
+        //for (int num : nums) {  
+        //    sum += num;  
+        //}
+        
+        // step 2 
+        // initialization of elements
+        for (int i = 0; i < nums.length; i++) {  
+            dp[i][i] = nums[i];  
+        }  
+        
+        // step 3
+        // a dynamic programming problem
+        // dp[1][2]
+        // dp[0][1]=nums[0]-dp[1][1],nums[2]-dp[0][0]
+        // dp[0][2]=nums[0]-dp[1][2],nums[2]-dp[0][1]
+        // the value needed for next calculation is pre-calculated
+        // using two loops here for pre-calculation purpose
+        // return dp[0][2]
+        for (int i = nums.length - 2; i >= 0; i--) {  
+            for (int j = i + 1; j < nums.length; j++) {  
+                dp[i][j] = Math.max(nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1]);  
+            }  
+        }  
+        
+        return dp[0][nums.length - 1] >= 0;  
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+class Solution(object):
+    
+    # recursive
+    def take(self, nums):
+        
+        if len(nums) == 0:
+            return 0
+        
+        if len(nums) == 1:
+            return nums[0]
+            
+        return max(nums[0]-self.take(nums[1:len(nums)]),nums[-1]-self.take(nums[0:len(nums)-1]))   
+        #1-take([5,2]) --  5-take(2)
+        #              --  2-take(5)
+        #2-take([1,5]) --  1-take(5)
+        #              --  5-take(1)
+    
+    def PredictTheWinner(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        ret = self.take(nums)
+        #return ret
+        
+        
+        # use cache to get time
+        return ret>=0
