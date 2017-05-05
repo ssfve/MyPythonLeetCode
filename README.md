@@ -16,7 +16,7 @@ Question|Trick
 011.3Sum 	   | two pointer sorted 
 012.Valid Parentheses  |   stack
 013.Remove Nth Node From End of List 	 | two pointer check on the run
-014.Letter Combination of a Phone Number|   dict recursive DFS
+014.Letter Combination of a Phone Number|   dict multiple recursives DFS
 015.3Sum Closest| sorted two pointer abs check on the run
 016.Integer to Roman|   dict recursive
 017.4Sum   |   sort two pointer enum
