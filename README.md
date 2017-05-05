@@ -33,3 +33,4 @@ Question|Trick
 028.Next Permutation| python for else floor division reservation algo
 029.Repeated Substring Pattern| KMP algo support array
 030.Search Insert Position| Sorted Divide by two
+031.Predict the Winner| dynamic programming   recursive  2d-array
