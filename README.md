@@ -16,7 +16,7 @@ Question|Trick
 011.3Sum 	   | two pointer sorted 
 012.Valid Parentheses  |   stack
 013.Remove Nth Node From End of List 	 | two pointer check on the run
-014.Letter Combination of a Phone Number|   dict recursive
+014.Letter Combination of a Phone Number|   dict recursive DFS
 015.3Sum Closest| sorted two pointer abs check on the run
 016.Integer to Roman|   dict recursive
 017.4Sum   |   sort two pointer enum
@@ -34,4 +34,4 @@ Question|Trick
 029.Repeated Substring Pattern| KMP algo support array
 030.Search Insert Position| Sorted Divide by two
 031.Predict the Winner| dynamic programming   recursive  2d-array
-032.Combination Sum| multiple recursives
+032.Combination Sum| multiple recursives DFS
