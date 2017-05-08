@@ -36,3 +36,4 @@ Question|Trick
 031.Predict the Winner| dynamic programming   recursive  2d-array
 032.Combination Sum| multiple recursives DFS
 033.Count and Say| On the run checking
+034.Find Right Interval|  divide by two bisect.bisect_left
