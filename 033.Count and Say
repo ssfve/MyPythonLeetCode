@@ -1,0 +1,52 @@
+class Solution(object):
+    def countAndSay(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        num_str = ""
+        
+        for n in range(n):
+            num_str = self.dfs(num_str)
+        
+        return num_str
+        
+    def dfs(self, num_str):
+        ret_str = ""
+        count_pre = 0
+        count = 1
+        if num_str == "":
+            return "1"
+        if num_str == "1":
+            return "11"
+            
+        for index in range(len(num_str)-1):
+            if num_str[index+1] != num_str[index]:
+                ret_str += str(count-count_pre) + str(num_str[index])
+                count = 1
+            else:
+                count += 1
+                    
+        ret_str += str(count-count_pre) + str(num_str[-1])
+        return ret_str
+        
+        
+        """
+        def count(self,s):
+        t=''; count=0; curr='#'
+        for i in s:
+            if i!=curr:
+                if curr!='#':
+                    t+=str(count)+curr
+                curr=i
+                count=1
+            else:
+                count+=1
+        t+=str(count)+curr
+        return t
+    def countAndSay(self, n):
+        s='1'
+        for i in range(2,n+1):
+            s=self.count(s)
+        return s
+        """
