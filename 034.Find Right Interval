@@ -1,0 +1,50 @@
+# Definition for an interval.
+# class Interval(object):
+#     def __init__(self, s=0, e=0):
+#         self.start = s
+#         self.end = e
+
+class Solution(object):
+    def findRightInterval(self, intervals):
+        """
+        :type intervals: List[Interval]
+        :rtype: List[int]
+        """
+        from bisect import bisect_left
+
+        n = len(intervals)
+        
+        # initialize a list of length n
+        res = [-1] * n
+        starts = []
+        m = {}
+        
+        # use enumerate here
+        # http://blog.csdn.net/churximi/article/details/51648388
+        for i, interval in enumerate(intervals):
+            starts.append(interval.start)
+            # store the index
+            m[interval.start] = i
+        
+        # sorting is very important here   
+        starts.sort()
+        # range(n) return a list used as iterator
+        # xrange(n) return a list generator could also give to in
+        # http://blog.csdn.net/karldoenitz/article/details/23476801
+        
+        # divide by two is wonderful here
+        # for bisect_left(x,y) find y in x 
+        # if found return the left-most position or return the insert position
+        #http://blog.csdn.net/crazyhacking/article/details/30067709
+        # 一旦决定使用二分搜索时，立马要想到使用这个模块　
+        # bisect.insort_left(L,x)  #将x插入到列表L中，x存在时插入在左侧  
+        for i in xrange(n):
+            pos = bisect_left(starts, intervals[i].end)
+            # the end point of any interval couldn't be smaller than the minimun of starts 
+            if pos < n:
+                # get the index
+                res[i] = m[starts[pos]]
+        
+        # res is by default -1
+        return res
+        
