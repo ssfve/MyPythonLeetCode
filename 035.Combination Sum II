@@ -1,0 +1,52 @@
+class Solution(object):
+    """
+    def combinationSum2(self, candidates, target):
+        
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        
+        #candidates = list(set(candidates))
+        candidates.sort()
+        #return candidates
+        Solution.ret = []
+        self.DFS(candidates, target, 0, [])
+        return Solution.ret
+
+    # multiple recursives
+    def DFS(self, candidates, target, start, valuelist):
+        length = len(candidates)
+        if target == 0:
+            return Solution.ret.append(valuelist)
+        for i in range(start, length):
+            if target < candidates[i]:
+                return
+            x   ``      ``# no duplicatesn ;m
+            self.DFS(candidates, target - candidates[i], i+1, valuelist + [candidates[i]])
+    """
+    def combinationSum2(self, candidates, target): 
+        # write your code here
+        candidates.sort()        
+        
+        # initialize a list of len(candidates)
+        self.ans, tmp, use = [], [], [0] * len(candidates)        
+        self.dfs(candidates, target, 0, 0, tmp, use)        
+        return self.ans 
+        
+    def dfs(self, can, target, p, now, tmp, use):        
+        if now == target:            
+            self.ans.append(tmp[:])
+            
+            # recursive return
+            return        
+        
+        for i in range(p, len(can)):      
+            # ESCAPE DUPLICATE BRANCH
+            if now + can[i] <= target and (i == 0 or can[i] != can[i-1] or use[i-1] == 1):                
+                tmp.append(can[i])
+                use[i] = 1                
+                self.dfs(can, target, i+1, now + can[i], tmp, use)   
+                # pop remove the last element from a list and return its value
+                tmp.pop()                
+                use[i] = 0
+                
