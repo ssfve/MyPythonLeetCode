@@ -1,0 +1,22 @@
+class Solution(object):
+    def permuteUnique(self, nums):
+        
+        def DFS(result, nums, temp):
+            if nums == []:
+                #value_list.append(nums[0])
+                result.append(temp)
+            else:
+                for i in range(len(nums)):
+                    if i == 0:
+                        DFS(result, nums[:i] + nums[i+1:], temp + [nums[i]])
+                    if(nums[i] == nums[i-1]) or (i == 0):
+                        pass
+                    else:
+                        DFS(result, nums[:i] + nums[i+1:], temp + [nums[i]])
+                    
+                    
+        #:type nums: List[int]
+        #:rtype: List[List[int]]
+        result = []
+        DFS(result, sorted(nums), [])
+        return result
