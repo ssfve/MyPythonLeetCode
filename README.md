@@ -39,4 +39,5 @@ Question|Trick
 034.Find Right Interval|  divide by two bisect.bisect_left
 035.Combination Sum II|  multiple recursives DFS with condition deep first search
 036.Multiply Strings| support array carry
-037.Permutations| dfs scope
+037.Permutations| DFS  scope
+038.Permutations II| DFS
