@@ -38,3 +38,4 @@ Question|Trick
 033.Count and Say| On the run checking
 034.Find Right Interval|  divide by two bisect.bisect_left
 035.Combination Sum II|  multiple recursives DFS with condition deep first search
+036.Multiply Strings| support array carry
