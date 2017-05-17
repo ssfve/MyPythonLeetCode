@@ -1,0 +1,39 @@
+class Solution(object):
+    def permute(self, nums):
+        
+        def DFS(result, nums, temp):
+            if nums == []:
+                #value_list.append(nums[0])
+                result.append(temp)
+            else:
+                for i in range(len(nums)):
+                    DFS(result, nums[:i] + nums[i+1:], temp + [nums[i]])
+                    
+        #:type nums: List[int]
+        #:rtype: List[List[int]]
+        result = []
+        DFS(result, nums, [])
+        return result
+        
+        
+                
+    """
+    def permute(self, nums):
+        # write your code here
+        def _permute(result, temp, nums):
+            if nums == []:
+                result += [temp]
+            else:
+                for i in range(len(nums)):
+                    _permute(result, temp + [nums[i]], nums[:i] + nums[i+1:])
+
+        if nums is None:
+            return []
+        
+        if nums is []:
+            return [[]]
+
+        result = []
+        _permute(result, [], sorted(nums))
+        return result
+    """
